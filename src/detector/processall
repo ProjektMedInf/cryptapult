@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # L'approccio è il seguente: ogni file $f trovato (che corrisponda al pattern)
 # per cui non esista un file di lock (capire come farlo su vfat scemo) va
