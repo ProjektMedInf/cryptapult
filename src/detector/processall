@@ -9,7 +9,7 @@
 
 set -e
 
-encrypt_cmd=${encrypt_cmd:-catapult-encrypt}
+encrypt_cmd=${encrypt_cmd:-cryptapult}
 pubkey=${pubkey:-/key.pub}
 if [[ ! -r "$pubkey" ]]; then
 	echo "Error: no public key found" >&2
