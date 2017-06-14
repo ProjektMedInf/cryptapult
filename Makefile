@@ -234,10 +234,10 @@ AUTOCONF = ${SHELL} /home/georg/Documents/GitHub/cryptapult/missing autoconf
 AUTOHEADER = ${SHELL} /home/georg/Documents/GitHub/cryptapult/missing autoheader
 AUTOMAKE = ${SHELL} /home/georg/Documents/GitHub/cryptapult/missing automake-1.15
 AWK = mawk
-CC = gcc
+CC = arm-none-eabi-gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -O3
-CPP = gcc -E
+CPP = arm-none-eabi-gcc -E
 CPPFLAGS = -O3
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"cryptapult\" -DPACKAGE_TARNAME=\"cryptapult\" -DPACKAGE_VERSION=\"0.1\" -DPACKAGE_STRING=\"cryptapult\ 0.1\" -DPACKAGE_BUGREPORT=\"piuttosto@logorroici.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"cryptapult\" -DVERSION=\"0.1\" -DHAVE_LIBSODIUM=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_FCNTL_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_UNISTD_H=1 -DHAVE_SODIUM_H=1 -DHAVE_STDLIB_H=1 -DHAVE_UNISTD_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_GETPAGESIZE=1 -DHAVE_MMAP=1 -DHAVE_CLOCK_GETTIME=1 -DHAVE_MEMSET=1 -DHAVE_MUNMAP=1 -DHAVE_STRERROR=1
@@ -276,7 +276,7 @@ abs_builddir = /home/georg/Documents/GitHub/cryptapult
 abs_srcdir = /home/georg/Documents/GitHub/cryptapult
 abs_top_builddir = /home/georg/Documents/GitHub/cryptapult
 abs_top_srcdir = /home/georg/Documents/GitHub/cryptapult
-ac_ct_CC = gcc
+ac_ct_CC = arm-none-eabi-gcc
 am__include = include
 am__leading_dot = .
 am__quote = 
