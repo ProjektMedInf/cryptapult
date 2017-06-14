@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([cryptapult], [0.1], [piuttosto@logorroici.org])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([-Wall foreign])
 AC_CONFIG_SRCDIR([src/cryptapult/keyfiles.h])
 # AC_CONFIG_HEADERS([config.h])
 
