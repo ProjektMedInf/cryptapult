@@ -38,7 +38,7 @@ int main (int argc, char **argv){
         break;
       case 'i':
         ipath = optarg;
-        opath = malloc(sizeof(char) * strlen(ipath) + 4);
+        opath = malloc(sizeof(char) * strlen(ipath) + 5);
         memset(opath, '\0', strlen(ipath) + 1);
         while(*ipath != '\0'){
           opath[i++] = *ipath++;
