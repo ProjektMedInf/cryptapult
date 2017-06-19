@@ -12,6 +12,12 @@ char *progName;
 void printUsage(void);
 void printError(char *msg, int doExit);
 
+/**
+ * The main function which performs the parsing of the CLAs and performs the decryption or the encryption.
+ * @param argc The CLA counter
+ * @param argv The CLA vector
+ * @return 0 on success otherwise a number bigger than 0
+**/
 int main (int argc, char **argv){
   progName = argv[0];
   int opt, status, j;
@@ -93,8 +99,6 @@ int main (int argc, char **argv){
   int ifSize = ftell(ifd);
   rewind(ifd);
 
-  //char *key = readFromFile(kfd);
-  //char *ifdBuffer = readFromFile(ifd);
   char *key = (char *)malloc(kfSize + 1);
   if(key == NULL){
     printError("Error during initializing key buffer\n", 1);
@@ -112,7 +116,7 @@ int main (int argc, char **argv){
 
   if(eflag){
     // do encryption
-    //fill nonce and key with random data
+    // fill nonce and key with random data
     randombytes_buf(nonce, sizeof(nonce));
 
     char c[ifSize];
@@ -122,10 +126,12 @@ int main (int argc, char **argv){
     FILE *ofd = fopen(opath, "w");
 
     if (ofd == NULL){
-      printError("Error during opening keyfile\n", 1);
+      printError("Error during opening keyfile\n", 2);
     }
-    if(fwrite(c, sizeof(char), sizeof(c), ofd) == 0){
-      printError("An error occured during writing the encrypted file\n", 1);
+
+    // write the encrypted stream to the outputfile
+    if(fwrite(c, sizeof(char), sizeof(c), ofd) != sizeof(c)){
+      printError("An error occured during writing the encrypted file\n", 2);
     }
 
     fclose(ofd);
@@ -135,8 +141,10 @@ int main (int argc, char **argv){
     if (ofd == NULL){
       printError("Error during opening keyfile\n", 1);
     }
-    if(fwrite(nonce, sizeof(char), sizeof(nonce), ofd) == 0){
-      printError("An error occured during writing the encrypted file\n", 1);
+    
+    // write the used nonce to the end of the outputfile
+    if(fwrite(nonce, sizeof(char), sizeof(nonce), ofd) != sizeof(nonce)){
+      printError("An error occured during writing the encrypted file\n", 2);
     }
 
     fclose(ofd);
@@ -155,11 +163,12 @@ int main (int argc, char **argv){
     FILE *ofd = fopen(opath, "w");
 
     if (ofd == NULL){
-      printError("Error during opening keyfile\n", 1);
+      printError("Error during opening keyfile\n", 2);
     }
     
-    if(fwrite(c, sizeof(char), sizeof(c), ofd) == 0){
-      printError("An error occured during writing the decrypted file\n", 1);
+    // write out the decrypted stream to the outputfile
+    if(fwrite(c, sizeof(char), sizeof(c), ofd) != sizeof(c)){
+      printError("An error occured during writing the decrypted file\n", 2);
     }
 
     fclose(ofd);
@@ -171,14 +180,23 @@ int main (int argc, char **argv){
   return 0;
 } 
 
+/**
+ * Pritns the usage and exits with 255.
+**/
 void printUsage(void){
   fprintf(stderr, "Usage: %s -k <keyfile> -i <inputfile> -d|-e\n", progName);
-  exit(1);
+  exit(255);
 }
 
+/**
+ * Prints an error message to sdterr and exists with the given exitcode
+ * if it is not 0.
+ * @param msg the error message
+ * @param doExit the exitcode to be used
+**/
 void printError(char *msg, int doExit){
   fprintf(stderr, msg);
   if(doExit){
-    exit(1);
+    exit(doExit);
   }
 }
